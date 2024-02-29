@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"uk.andrewcarterdevelopments.Discord","l":"GameManager"}]
