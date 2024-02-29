@@ -22,12 +22,9 @@ public class SlashCommands extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
 
-        if (event.getName().equals("start")) {
+        if (event.getName().equals("fact")) {
 
-
-        } else if (event.getName().equals("end")) {
-
-
+            event.reply("test wooohooooo").queue();
 
         }
     }

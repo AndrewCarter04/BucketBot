@@ -36,21 +36,8 @@ public class BucketBot {
         jda.awaitReady();
 
         jda.updateCommands().addCommands(
-                Commands.slash("add-user", "Add a user to the secret santa.")
-                        .addOption(OptionType.USER, "user", "The user to add.", true)
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)),
-                Commands.slash("remove-user", "Remove a user from the secret santa.")
-                        .addOption(OptionType.USER, "user", "The user to remove.", true)
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)),
-                Commands.slash("set-date", "Set the deadline date for the secret santa.")
-                        .addOption(OptionType.STRING, "date", "Format: dd/mm/yyyy", true)
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)),
-                Commands.slash("start", "Start the secret santa.")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)),
-                Commands.slash("end", "End the secret santa.")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)),
-                Commands.slash("resend-failed", "Resend the failed DMs to the participants.")
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS))
+                Commands.slash("fact", "Fact about buckets")
+
         ).queue();
 
     }
