@@ -77,7 +77,7 @@ public class BucketBot {
                         .addOption(OptionType.CHANNEL, "channel", "Text channel to send the alert messages", true)
                         .addOption(OptionType.INTEGER, "frequency", "How many hours between the messages", true)
                         .setGuildOnly(true)
-                        //.setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL))
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL))
 
         ).queue();
 

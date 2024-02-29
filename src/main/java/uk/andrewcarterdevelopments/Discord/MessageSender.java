@@ -86,7 +86,7 @@ public class MessageSender {
 
         };
 
-        scheduler.scheduleAtFixedRate(task, 10, 10, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(task, 1, 60, TimeUnit.MINUTES);
 
     }
 
