@@ -16,14 +16,20 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
  */
 public class BucketBot {
 
+    /*
+    *
+    *
+    *
+    * */
+
     private static JDA jda;
 
     public static void main(String[] args) throws InterruptedException {
 
         JDABuilder builder = JDABuilder.createDefault(Private.getToken());
 
-        builder.setActivity(Activity.playing("Buckets!"));
-        builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
+        builder.setActivity(Activity.playing("Buckets and Balls!!!"));
+        builder.setStatus(OnlineStatus.ONLINE);
         builder.disableCache(CacheFlag.VOICE_STATE, CacheFlag.SCHEDULED_EVENTS);
         builder.setEnabledIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.DIRECT_MESSAGE_REACTIONS,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_MESSAGES,
@@ -36,7 +42,7 @@ public class BucketBot {
         jda.awaitReady();
 
         jda.updateCommands().addCommands(
-                Commands.slash("fact", "Fact about buckets")
+                Commands.slash("fact", "(Java) Fact about buckets")
 
         ).queue();
 
