@@ -55,7 +55,7 @@ public class MessageSender {
                     notifier.put("counter", 0);
                     BucketBot.dispatchMessage(key, notifier.getString("guild"), notifier.getString("channel"));
                 } else {
-                    notifier.put("counter", notifier.getInt("count") + 1);
+                    notifier.put("counter", notifier.getInt("counter") + 1);
                 }
 
                 jsonObject.put(key, notifier);
@@ -86,29 +86,8 @@ public class MessageSender {
 
         };
 
-        long initialDelay = calculateInitialDelay();
+        scheduler.scheduleAtFixedRate(task, 10, 10, TimeUnit.SECONDS);
 
-        System.out.println(initialDelay);
-
-        scheduler.scheduleAtFixedRate(task, 10, 1, TimeUnit.SECONDS);
-
-    }
-
-    /**
-     * Calculate the initial delay for the task to ensure it is run every hour, on the hour, e.g. 2pm
-     * @return  Time until the next hour, eg: 0.5 for 30min
-     */
-    private long calculateInitialDelay() {
-        Calendar currentTime = Calendar.getInstance();
-        long minute = currentTime.get(Calendar.MINUTE);
-        long second = currentTime.get(Calendar.SECOND);
-        long minutesUntil = 60l - minute;
-        long secondsUntil = 60l - second;
-        System.out.println(minute);
-        System.out.println(second);
-        System.out.println(minutesUntil);
-        System.out.println(secondsUntil);
-        return (minutesUntil * 60l + secondsUntil) / 3600;
     }
 
 }

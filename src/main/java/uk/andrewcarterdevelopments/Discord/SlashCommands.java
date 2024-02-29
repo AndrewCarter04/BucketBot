@@ -25,7 +25,7 @@ public class SlashCommands extends ListenerAdapter {
 
         } else if (event.getName().equals("notify")) {
 
-            if (event.getOption("channel").getAsChannel().getType().equals(ChannelType.TEXT)) {
+            if (event.getOption("channel").getAsChannel().getType().equals(ChannelType.TEXT)) { // if the channel is a text channel
                 BucketBot.createNotifier(event.getGuild(), event.getOption("channel").getAsChannel(), event.getOption("frequency").getAsInt());
                 event.reply("Created a scheduled notification for a random sustainability fact!").queue();
             } else {

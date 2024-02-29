@@ -64,7 +64,7 @@ public class BucketBot {
         builder.setEnabledIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.DIRECT_MESSAGE_REACTIONS,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_EMOJIS_AND_STICKERS, GatewayIntent.GUILD_MEMBERS);
-        builder.addEventListeners(new SlashCommands());
+        builder.addEventListeners(new SlashCommands(), new ButtonClick());
 
         // Build the builder
         jda = builder.build();
@@ -184,13 +184,70 @@ public class BucketBot {
 
     }
 
+    public static void cancelNotifier(String uuid) {
+
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader("notifiers.json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        // Read the JSON string from the file
+        StringBuilder jsonStringBuilder = new StringBuilder();
+        String line;
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            jsonStringBuilder.append(line);
+        }
+
+        // Parse the JSON string into a JSONArray
+        JSONObject jsonObject = new JSONObject(jsonStringBuilder.toString());
+
+        jsonObject.remove(uuid);
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("notifiers.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+        // Write the JSON object to the file
+        try {
+            bufferedWriter.write(jsonObject.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Close the BufferedWriter
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /*
+
+    Send the actual messages
+
+     */
+
     public static void dispatchMessage(String uuid, String guildID, String channelID) {
 
         System.out.println("dispatch " + uuid);
 
         Button cancel = Button.danger("cancel-" + uuid, "Cancel Task");
 
-        jda.getGuildById(guildID).getTextChannelById(channelID).sendMessage(getRandomFact())
+        jda.getGuildById(guildID).getTextChannelById(channelID).sendMessage("It's random sustainability fact time!!!\n\n" + getRandomFact() + "\n")
                 .addActionRow(cancel)
                 .queue();
 
